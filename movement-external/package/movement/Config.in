@@ -1,0 +1,7 @@
+config BR2_PACKAGE_MOVEMENT
+	bool "movement"
+	depends on BR2_PACKAGE_HOST_RUSTC_TARGET_ARCH_SUPPORTS
+	select BR2_PACKAGE_HOST_RUSTC
+	help
+	  movement is a daemon which moves the screen
+

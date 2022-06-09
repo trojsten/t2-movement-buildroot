@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# Start/stop movement
+#
+
+MOVEMENT=/usr/bin/movement
+PIDFILE=/var/run/movement.pid
+
+case "$1" in
+  start)
+	echo "Starting movement..."
+	start-stop-daemon -S -x "$MOVEMENT" -b -m -p "$PIDFILE"
+	;;
+  stop)
+	echo "Stopping movement..."
+	start-stop-daemon -K -x "$MOVEMENT" -p "$PIDFILE" -o
+	;;
+  restart)
+	"$0" stop
+	sleep 1 # Prevent race condition: ensure movement stops before start.
+	"$0" start
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac

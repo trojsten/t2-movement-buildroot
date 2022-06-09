@@ -1,0 +1,1 @@
+source "$BR2_EXTERNAL_MOVEMENT_PATH/package/movement/Config.in"
